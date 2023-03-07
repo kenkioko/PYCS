@@ -1,0 +1,12 @@
+{
+  "name": "pycs",
+  "version": "1.0.0",
+  "description": "PYCS Technical Assessment",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kennedy Kioko (kmkioko@gmail.com)",
+  "license": "MIT"
+}
