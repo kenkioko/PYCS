@@ -10,3 +10,6 @@ pids
 
 # Dependency folder
 /node_modules
+
+# Dotenv file
+.env
