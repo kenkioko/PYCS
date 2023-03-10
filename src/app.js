@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // for parsing multipart/form-data
 const upload = multer();
+app.use(upload.array());
 
 // static files folder
 app.use(express.static('public'));
@@ -43,8 +44,8 @@ const port = process.env.PORT || '3000';
 
 // set app routes
 app.use('/', indexRouter);
-app.use('/customers', upload.array(), customerRouter);
-app.use('/tiers', upload.array(), tierRouter);
+app.use('/customers', customerRouter);
+app.use('/tiers', tierRouter);
 
 // listen on provided port, on all network interfaces.
 app.listen(port, () => {
