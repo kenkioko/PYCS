@@ -33,12 +33,13 @@ $(function () {
         };
 
         // Send data
+        $('#server-response').css('display', 'none');
         fetch(actionUrl, options)
             .then((response) => response.json())
             .then((data) => {
                 // Show the credit score from response data
-                $("#message").text(data.message);
-                $("#credit-score").text(data.data.CreditScore);
+                $("#message").text(data.Message);
+                $("#credit-score").text(data.CreditScore);
                 $('#server-response').css('display', 'block');
             })
             .catch((error) => console.error(error));

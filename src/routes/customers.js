@@ -33,11 +33,9 @@ router.post('/', (req, res) => {
 
   // return the creditScore as JSON
   res.status(201).json({
-    message: 'Successfully computed credit score',
-    data: {
-      CustomerData: customerData,
-      CreditScore: creditScore
-    }
+    Message: 'Successfully computed credit score',
+    CustomerData: customerData,
+    CreditScore: creditScore
   });
 });
 
