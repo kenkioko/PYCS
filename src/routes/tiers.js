@@ -1,26 +1,23 @@
 import express from "express";
 
+import { findAge, formatDate } from "../lib/date.js";
+import { getGradeTiers } from "../lib/grade.js";
+
 // initialize router
 const router = express.Router();
 
 // GET grading tiers given age or date of birth
-router.get('/', (req, res) => {
-  const dateOfBirth = new Date(req.query.dateOfBirth);
-  const currentDate = new Date();
-  const age = currentDate.getFullYear() - dateOfBirth.getFullYear();
-  let grade;
+router.get('/', async (req, res) => {
+  const dateOfBirth = formatDate(req.query.DateOfBirth, 'YYYY-MM-DD', 'YYYY-DD-MM');
+  const age = findAge(dateOfBirth, 'YYYY-DD-MM');
 
-  if (age >= 18 && age <= 25) {
-    grade = 'Grade A';
-  } else if (age > 25 && age <= 35) {
-    grade = 'Grade B';
-  } else if (age > 35) {
-    grade = 'Grade C';
-  } else {
-    grade = 'Not eligible';
-  }
+  // Get grade tiers
+  const grades = await getGradeTiers(age);
 
-  res.status(200).json({ grade });
+  res.status(200).json({ 
+    Message: 'Successfully fetched grades',
+    GradesOutPut: grades
+  });
 });
 
 export default router;

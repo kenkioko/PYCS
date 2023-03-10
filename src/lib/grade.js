@@ -36,14 +36,6 @@ export const computeGradeScore = (data) => {
         ? gradeScale[grade]
         : 0;
 
-    // // probability from dataset
-    // // Not sure how to use
-    // const probability = DataSet3.Probability 
-    //     ? DataSet3.Probability / 100
-    //     : 1;
-
-    // return (weight * probability) * 60;
-
     // amounts to 60%
     return weight * 60;
 }
