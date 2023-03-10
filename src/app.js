@@ -8,24 +8,45 @@
 
 import * as dotenv from 'dotenv';
 import express from "express";
+import bodyParser from "body-parser";
+import multer from "multer";
 
 // app routes
 import indexRouter from "./routes/index.js";
+import customerRouter from "./routes/customers.js";
+import tierRouter from "./routes/tiers.js";
 
 // initialize dotenv
 dotenv.config();
 
 // initialize the express app
-const app = express()
+const app = express();
+
+// for parsing application/json
+app.use(bodyParser.json());
+
+// for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// for parsing multipart/form-data
+const upload = multer();
+
+// static files folder
 app.use(express.static('public'));
+
+// view engine setup
+app.set('views', 'views');
+app.set('view engine', 'ejs');
 
 // port from environment
 const port = process.env.PORT || '3000';
 
 // set app routes
 app.use('/', indexRouter);
+app.use('/customers', upload.array(), customerRouter);
+app.use('/tiers', upload.array(), tierRouter);
 
 // listen on provided port, on all network interfaces.
 app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}/`)
-})
+  console.log(`Listening on http://localhost:${port}/`);
+});
