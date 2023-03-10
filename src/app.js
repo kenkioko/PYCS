@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import express from "express";
 import bodyParser from "body-parser";
-import multer from "multer";
+import bodyParserXML from "body-parser-xml";
 
 // app routes
 import indexRouter from "./routes/index.js";
@@ -20,9 +20,18 @@ app.use(bodyParser.json());
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// for parsing multipart/form-data
-const upload = multer();
-app.use(upload.array());
+// parse application/xml
+app.use(bodyParser.text({ type: 'application/xml' }));
+
+bodyParserXML(bodyParser);
+app.use(bodyParser.xml({
+  limit: '1MB',   // Reject payload bigger than 1 MB
+  xmlParseOptions: {
+    normalize: true,     // Trim whitespace inside text nodes
+    normalizeTags: true, // Transform tags to lowercase
+    explicitArray: false // Only put nodes in array if >1
+  }
+}));
 
 // static files folder
 app.use(express.static('public'));
