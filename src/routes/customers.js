@@ -12,10 +12,17 @@ dotenv.config();
 // initialize router
 const router = express.Router();
 
-// GET customer page
+// GET customer data
 router.get('/', function (req, res, next) {
-  res.render('customer', {
-    title: process.env.APP_NAME
+  res.status(200).json({
+    Message: "Post customer's data With fields",
+    Fields: {
+      "DateOfBirth": "YYYY-MM-DD",
+      "Email": "example@email.com",
+      "IdNumber": "12345678",
+      "Name": "John Doe",
+      "Phone": "xxxxxxxxxxxx"
+    }
   });
 });
 
