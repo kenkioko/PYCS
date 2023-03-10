@@ -1,5 +1,5 @@
 import * as stringSimilarity from "string-similarity";
-import findAge from "./age.js";
+import findAge from "./date.js";
 
 /**
  * function to compute the KYC score
@@ -17,13 +17,12 @@ export const computeKYCScore = (data) => {
     }
 
     // must be over 22 years of age
-    const dob = (DataSet1.DateOfBirth === DataSet2.DateOfBirth) 
-        ? DataSet1.DateOfBirth 
-        : null;
+    if (DataSet1.DateOfBirth === DataSet2.DateOfBirth) {
+        const age = findAge(DataSet1.DateOfBirth, 'YYYY-DD-MM');
 
-    const age = findAge(dob);
-    if (age >= 22) {
-        score += 10;
+        if (age >= 22) {
+            score += 10;
+        }
     }
 
     // names should match at least 70%
@@ -35,14 +34,14 @@ export const computeKYCScore = (data) => {
     }
 
     // one mobile number must match
-    const phones1 = Array.isArray(DataSet1.Phone) 
-        ? [...DataSet1.Phone] 
+    const phones1 = Array.isArray(DataSet1.Phone)
+        ? [...DataSet1.Phone]
         : [DataSet1.Phone];
-        
-    const phones2 = Array.isArray(DataSet2.Phone) 
-        ? [...DataSet2.Phone] 
+
+    const phones2 = Array.isArray(DataSet2.Phone)
+        ? [...DataSet2.Phone]
         : [DataSet2.Phone];
-        
+
     const matchedPhones = phones1.filter(phone1 => phones2.includes(phone1));
     if (matchedPhones.length > 0) {
         score += 10;

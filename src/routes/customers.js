@@ -2,6 +2,7 @@ import express from "express";
 import * as dotenv from 'dotenv';
 
 import { data } from "../data/dataset.js";
+import { formatDate } from "../lib/date.js";
 import { computeKYCScore } from "../lib/kyc.js";
 import { computeGradeScore } from "../lib/grade.js";
 
@@ -22,9 +23,10 @@ router.get('/', function (req, res, next) {
 router.post('/', (req, res) => {
   // Get DataSet1 from request
   const customerData = req.body;
-  data.DataSet1 = customerData;
+  customerData.DateOfBirth = formatDate(customerData.DateOfBirth, 'YYYY-MM-DD', 'YYYY-DD-MM');
 
   // compute credit score
+  data.DataSet1 = customerData;
   const kycScore = computeKYCScore(data);
   const gradeScore = computeGradeScore(data);
   const creditScore = kycScore + gradeScore;
