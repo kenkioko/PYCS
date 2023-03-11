@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Tier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <ScoreOutputGrades>
-        <Score LowerAgeLimit="22" UpperAgeLimit="24" GradesOutPut="AA,BB" />
-        <Score LowerAgeLimit="25" UpperAgeLimit="60" GradesOutPut="AA,BB,CC,DD,EE,FF,GG" />
-    </ScoreOutputGrades>
+  <ScoreOutputGrades>
+    <Score LowerAgeLimit="22" UpperAgeLimit="24" GradesOutPut="AA,BB"/>
+    <Score LowerAgeLimit="25" UpperAgeLimit="60" GradesOutPut="AA,BB,CC,DD,EE,FF,GG"/>
+  </ScoreOutputGrades>
 </Tier>

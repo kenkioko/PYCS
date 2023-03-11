@@ -28,7 +28,6 @@ app.use(bodyParser.xml({
   limit: '1MB',   // Reject payload bigger than 1 MB
   xmlParseOptions: {
     normalize: true,     // Trim whitespace inside text nodes
-    normalizeTags: true, // Transform tags to lowercase
     explicitArray: false // Only put nodes in array if >1
   }
 }));
