@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "3f67e745-8afd-47ed-bd0b-48bf4ed6ff59",
+		"name": "Credit Score",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Compute Credit Score",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"DateOfBirth\": \"2000-07-20\",\n    \"Email\": \"johndoe@gmail.com\",\n    \"IdNumber\": \"12345678\",\n    \"Name\": \"John Doe\",\n    \"Phone\": \"254711000001\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/customers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"customers"
+					]
+				},
+				"description": "Computes the customer credit score using the KYC data.\n\n```\n{\n  \"DateOfBirth\": \"YYYY-MM-DD\",\n  \"Email\": \"example@email.com\",\n  \"IdNumber\": \"12345678\",\n  \"Name\": \"John Doe\",\n  \"Phone\": \"xxxxxxxxxxxx\"\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Grading Tiers Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Tier xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\n    <ScoreOutputGrades>\n        <Score LowerAgeLimit=\"22\" UpperAgeLimit=\"24\" GradesOutPut=\"AA,BB\" />\n        <Score LowerAgeLimit=\"25\" UpperAgeLimit=\"60\" GradesOutPut=\"AA,BB,CC,DD,EE,FF,GG\" />\n    </ScoreOutputGrades>\n</Tier>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/tiers?XMLType=data",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tiers"
+					],
+					"query": [
+						{
+							"key": "XMLType",
+							"value": "data"
+						}
+					]
+				},
+				"description": "Update the available grading tiers.\nData sent as raw application/xml"
+			},
+			"response": []
+		},
+		{
+			"name": "Grading Tiers File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "XMLFile",
+							"type": "file",
+							"src": "/home/kioko/Projects/PYCS/xml/tiers.xml"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/tiers?XMLType=file",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tiers"
+					],
+					"query": [
+						{
+							"key": "XMLType",
+							"value": "file"
+						}
+					]
+				},
+				"description": "Update the available grading tiers.\nData sent as a file"
+			},
+			"response": []
+		},
+		{
+			"name": "Grading Tiers By Age",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/tiers?DateOfBirth=2000-02-20",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tiers"
+					],
+					"query": [
+						{
+							"key": "DateOfBirth",
+							"value": "2000-02-20"
+						}
+					]
+				},
+				"description": "Given the age of the customer, get the grading tiers available for the customer"
+			},
+			"response": []
+		},
+		{
+			"name": "Credit Score Fields",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/customers",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"customers"
+					]
+				},
+				"description": "Gets The fields for posting customer data i.e\n\n```\n{\n  \"DateOfBirth\": \"YYYY-MM-DD\",\n  \"Email\": \"example@email.com\",\n  \"IdNumber\": \"12345678\",\n  \"Name\": \"John Doe\",\n  \"Phone\": \"xxxxxxxxxxxx\"\n}\n```"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000"
+		}
+	]
+}
