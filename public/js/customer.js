@@ -1,7 +1,7 @@
 $(function () {
 
     // Get the form
-    let form = $('#customer-form');
+    let form = $('#customerForm');
 
     // Get the action url
     let actionUrl = form.attr('action');
@@ -33,14 +33,19 @@ $(function () {
         };
 
         // Send data
-        $('#server-response').css('display', 'none');
+        const divResponse = $('#customerResponse');
+        divResponse.hide();
         fetch(actionUrl, options)
             .then((response) => response.json())
             .then((data) => {
-                // Show the credit score from response data
-                $("#message").text(data.Message);
-                $("#credit-score").text(data.CreditScore);
-                $('#server-response').css('display', 'block');
+                // append the response data
+                divResponse.html(`
+                    <p>Server Response: ${data.Message}</p>
+                    <p>Your Credit Score is: ${data.CreditScore}%</p>
+                `);
+
+                // show the div
+                divResponse.show();
             })
             .catch((error) => console.error(error));
     });

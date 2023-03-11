@@ -1,0 +1,27 @@
+<div>
+    <div class="main">
+        <form id="xmlForm" action="/tiers" method="post">
+            <div class="input-group">
+                <p>Select XML data type:</p>
+                <input type="radio" name="XMLType" value="data" checked>XML Text<br>
+                <input type="radio" name="XMLType" value="file">XML File<br><br>
+            </div>
+
+            <div id="xmlText" class="input-group" style="display: block;">
+                <label>XML Text:</label>
+                <textarea name="XMLText" cols="40" rows="10"></textarea>
+            </div>
+
+            <div id="xmlFile" class="input-group" style="display: none;">
+                <label>XML File:</label>
+                <input type="file" name="XMLFile">
+            </div>
+            
+            <div class="input-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <div id="tierResponse" class="footer" style="display: none;"></div>
+</div>

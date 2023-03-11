@@ -16,6 +16,7 @@ label {
     font-weight: bold;
 }
 
+textarea,
 input[type="text"],
 input[type="email"],
 input[type="date"] {

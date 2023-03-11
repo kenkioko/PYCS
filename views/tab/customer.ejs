@@ -1,0 +1,36 @@
+<div>
+    <div class="main">
+        <form id="customerForm" action="/customers" method="post">
+            <div class="input-group">
+                <label for="Name">Name: </label>
+                <input type="text" name="Name" id="Name" value="" required>
+            </div>
+    
+            <div class="input-group">
+                <label for="DateOfBirth">Date of Birth: </label>
+                <input type="date" name="DateOfBirth" id="DateOfBirth" value="" required>
+            </div>
+    
+            <div class="input-group">
+                <label for="Email">Email: </label>
+                <input type="email" name="Email" id="Email" value="" required>
+            </div>
+    
+            <div class="input-group">
+                <label for="IdNumber">ID Number: </label>
+                <input type="text" name="IdNumber" id="IdNumber" value="" required>
+            </div>
+    
+            <div class="input-group">
+                <label for="Phone">Phone: </label>
+                <input type="text" name="Phone" id="Phone" value="" required>
+            </div>
+    
+            <div class="input-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+    <div id="customerResponse" class="footer" style="display: none;"></div>
+</div>

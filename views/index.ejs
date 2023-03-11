@@ -2,60 +2,47 @@
 <html>
 
 <head>
-  <title><%= title %></title>
+  <title>
+    <%= title %>
+  </title>
+
   <link rel='stylesheet' href='/css/style.css' />
+  <link rel='stylesheet' href='/css/tabs.css' />
 </head>
 
 <body>
   <div class="header">
-    <h1><%= title %></h1>
-    <h3>Enter your details to calculate your credit score</h3>
+    <h1>
+      <%= title %>
+    </h1>
+
   </div>
 
-  <div class="main">
-    <form id="customer-form" action="/customers" method="post">
-      <div class="input-group">
-        <label for="Name">Name: </label>
-        <input type="text" name="Name" id="Name" value="" required>
-      </div>
-      
-      <div class="input-group">
-        <label for="DateOfBirth">Date of Birth: </label>
-        <input type="date" name="DateOfBirth" id="DateOfBirth" value="" required>
-      </div>
+  <ul class="tab">
+    <li class="active"><a href="#Tab1">Score Calulator</a></li>
+    <li><a href="#Tab2">Grade Tiers</a></li>
+  </ul>
 
-      <div class="input-group">
-        <label for="Email">Email: </label>
-        <input type="email" name="Email" id="Email" value="" required>
-      </div>
+  <div id="Tab1" class="tabcontent">
+    <h3>Score Calulator:</h3>
+    <p>Enter your details to calculate your credit score.</p>
 
-      <div class="input-group">
-        <label for="IdNumber">ID Number: </label>
-        <input type="text" name="IdNumber" id="IdNumber" value="" required>
-      </div>
-
-      <div class="input-group">
-        <label for="Phone">Phone: </label>
-        <input type="text" name="Phone" id="Phone" value="" required>
-      </div>
-
-      <div class="input-group">
-        <input type="submit" value="Submit">
-      </div>
-    </form>
+    <%- include('tab/customer'); %>
   </div>
 
-  <div id="server-response" class="footer" style="display: none;">
-    <p>Server Response: <span id="message"></span></p>
-    <p>Your Credit Score is: <span id="credit-score"></span>%</p>
+  <div id="Tab2" class="tabcontent">
+    <h3>Grade Tiers</h3>
+    <p>Update grade tiers XML or query by age.</p>
+
+    <%- include('tab/tier'); %>
   </div>
 
-  <script 
-    src="https://code.jquery.com/jquery-3.3.1.min.js" 
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
   <script src="/js/customer.js"></script>
+  <script src="/js/tabs.js"></script>
+  <script src="/js/tier.js"></script>
 </body>
 
 </html>
